@@ -1,0 +1,147 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*code starts here!*/
+
+:root{
+    font-family: Roboto;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(./Roboto/Roboto-Bold.ttf);
+}
+
+header{
+    background: rgb(176, 232, 254);
+    height: 200px;
+    color: white;
+    display: grid;
+    justify-items: center;
+    align-items: start;
+    padding-top: 30px;
+    background-image: url("./images/row-of-books.png");
+    background-size: 100px;
+    background-repeat: repeat-x;
+    background-position-y: bottom;
+}
+h1{
+    font-size:3rem;
+}
+
+.new-book{
+    width: 50px;
+    height: 50px;
+    background: rgb(251, 199, 28);
+    border-radius: 50%;
+    color: white;
+    font-size: 3rem;
+    border: 0;
+    margin: 10px 0 10px 10px;
+}
+
+.no-display{
+    visibility: hidden;
+}
+
+
+.book-form{
+    border: 1px solid black;
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: whitesmoke;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-form input{
+    margin-bottom: 30px;
+    margin-top: 5px;
+    border-radius: 5px;
+    height: 30px;
+    border: 1px solid gray;
+}
+.book-form select{
+    width: 100px;
+}
+.book-form button{
+    align-self: end;
+    margin-top: auto;
+}
+.book-log{
+    margin: 10px 50px;
+    display: grid;
+    grid-auto-rows: 300px;
+    grid-template-columns: repeat(auto-fit, 300px);
+    gap: 50px;
+}
+.book-log > div{
+    border: 1px solid black;
+    padding: 20px;
+    border: 1px solid gray;
+    color: gray;
+    background: white;
+    border-radius: 15px;
+    display: grid;
+    justify-items: center;
+}
+.book-log h2{
+    font-size: 2rem;
+}
