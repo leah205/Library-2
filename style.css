@@ -63,36 +63,44 @@ table {
 }
 
 header{
-    background: rgb(176, 232, 254);
-    height: 200px;
+    background: rgb(245, 245, 245);
+    height: 150px;
     color: white;
     display: grid;
     justify-items: center;
-    align-items: start;
-    padding-top: 30px;
-    background-image: url("./images/row-of-books.png");
+    align-items: center;
+    color: gray;
+   /* background-image: url("./images/row-of-books.png");
     background-size: 100px;
     background-repeat: repeat-x;
-    background-position-y: bottom;
+    background-position-y: bottom;*/
 }
 h1{
     font-size:3rem;
 }
 
 .new-book{
-    width: 50px;
-    height: 50px;
-    background: rgb(251, 199, 28);
+    width: 70px;
+    height: 70px;
+    background: rgb(252, 219, 110);
     border-radius: 50%;
     color: white;
     font-size: 3rem;
     border: 0;
-    margin: 10px 0 10px 10px;
+    margin: 10px 0 10px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.new-book:hover{
+    background: rgb(225, 195, 99)
 }
 
 .no-display{
     visibility: hidden;
 }
+
 
 
 .book-form{
@@ -118,6 +126,11 @@ h1{
     height: 30px;
     border: 1px solid gray;
 }
+
+.book-form input:invalid{
+    border: 1px solid red;
+}
+
 .book-form select{
     width: 100px;
 }
@@ -125,8 +138,11 @@ h1{
     align-self: end;
     margin-top: auto;
 }
+input.invalid{
+    border: 1px solid red;
+}
 .book-log{
-    margin: 10px 50px;
+    margin: -50px 50px 0px 150px;
     display: grid;
     grid-auto-rows: 300px;
     grid-template-columns: repeat(auto-fit, 300px);
@@ -140,8 +156,41 @@ h1{
     background: white;
     border-radius: 15px;
     display: grid;
-    justify-items: center;
+    grid-template-columns: 2;
+    grid-template-areas: 
+        "title delete"
+        "author author"
+        "pages pages"
+        "read read";
+   /* justify-items: center;*/
 }
 .book-log h2{
     font-size: 2rem;
 }
+.book-log > div button{
+    width: 20px;
+    height: 20px;
+    background: rgb(239, 0, 0);
+    border-radius: 50%;
+    color: white;
+    font-size: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    grid-area: delete;
+    justify-self: end;
+};
+.book-log > div input h2{
+    grid-area: title;
+}
+.book-log > div p:nth-child(2){
+    grid-area: author;
+}
+.book-log > div p:nth-child(3){
+    grid-area: pages;
+}
+.book-log > div input:nth-child(4){
+    grid-area: read;
+}
+

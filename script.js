@@ -2,11 +2,18 @@ const newBookBtn = document.querySelector('.new-book');
 const bookLog = document.querySelector('.book-log');
 const bookForm = document.querySelector('.book-form');
 const submitFormBtn = document.querySelector('.book-form button');
+const titleInput = document.querySelector('#title');
+const authorInput = document.querySelector('#author');
+const pagesInput = document.querySelector("#pages");
+const selectRead = document.querySelector("#read");
 
 const myLibrary = [];
 //rating?
 //filters for display books like if its been read
 //read just gives attribute of checked 
+//required fields
+//cancel button for book form
+//fix that it gets unchecked when reload
 function Book(name, author, pages, read){
     this.name = name;
     this.author = author;
@@ -19,13 +26,9 @@ function addBookToLibrary(name, author, pages, read){
     myLibrary.push(book);
 }
 
-addBookToLibrary('My Year of Rest and Relaxation', 'Otessa Moshfegh', 288, false);
-addBookToLibrary('Red Rising', 'Pierce Brown', 400, true);
-
 function displayBooks(){
     myLibrary.forEach((book) => {
         displayBook(book);
-        console.log('hi');
     });
 }
 
@@ -35,8 +38,8 @@ function displayBook(book){
     bookContainer.appendChild(createBookName(book.name));
     bookContainer.appendChild(createBookAuthor(book.author));
     bookContainer.appendChild(createBookPages(book.pages));
-    //bookContainer.appendChild(createReadLabel());
-    bookContainer.appendChild(createBookRead(book.read));
+    bookContainer.appendChild(createBookRead(book.read, book));
+    bookContainer.appendChild(createDeleteButton(book));
   
     bookLog.appendChild(bookContainer);
 }
@@ -59,7 +62,7 @@ function createBookPages(pages){
     return bookPages;
 }
 
-function createBookRead(read){
+function createBookRead(read,book){
     const bookReadContainer = document.createElement("div");
 
     const readLabel = document.createElement('label');
@@ -73,12 +76,24 @@ function createBookRead(read){
     bookReadContainer.appendChild(readLabel);
     bookReadContainer.appendChild(bookRead);
 
+    bookRead.addEventListener('click', () =>{
+        toggleBookRead(book);
+    })
+
     return bookReadContainer;
-}
+};
 
+function createDeleteButton(book){
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = "x";
+    deleteBtn.addEventListener('click', () =>{
+        deleteBtn.parentElement.remove();
+        myLibrary.splice(myLibrary.indexOf(book),1);
+        }
+    );
+    return deleteBtn;
 
-
-displayBooks();
+ }
 
 
 newBookBtn.addEventListener('click', () => {
@@ -87,6 +102,37 @@ newBookBtn.addEventListener('click', () => {
 
 submitFormBtn.addEventListener('click', () =>{
     bookForm.classList.add('no-display');
-})
+    addBookToLibrary(title.value, author.value, pages.value, Boolean(selectRead.selectedIndex));
+    removeChildren(bookLog);
+    resetForm()
+    displayBooks();
+
+});
+
+function isInvalid(form){
+    if(!(title.value && author.value && pages.value)){
+        return true;
+    }
+};
+function indicateRequired(element){
+    console.log(element);
+    element.classList.add('invalid');
+}
+
+function removeChildren(container){
+    while(container.hasChildNodes()){
+        container.removeChild(container.firstChild);
+    }
+};
+
+function resetForm(){
+    title.value = "";
+    author.value = "";
+    pages.value = "";
+};
+
+function toggleBookRead(book){
+    book.read = !book.read;
+}
 
 
