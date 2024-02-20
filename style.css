@@ -127,16 +127,32 @@ h1{
     border: 1px solid gray;
 }
 
-.book-form input:invalid{
+.book-from input:invalid{
     border: 1px solid red;
 }
 
 .book-form select{
     width: 100px;
 }
-.book-form button{
-    align-self: end;
+.book-form button[type="submit"]{
+    background: green;
+}
+.cancel-btn{
+    background: red;
+
+}
+.book-form .buttons{
     margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.buttons button{
+    font-size: 2rem;
+    color: white;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 0;
 }
 input.invalid{
     border: 1px solid red;

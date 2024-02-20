@@ -1,7 +1,8 @@
 const newBookBtn = document.querySelector('.new-book');
 const bookLog = document.querySelector('.book-log');
 const bookForm = document.querySelector('.book-form');
-const submitFormBtn = document.querySelector('.book-form button');
+const submitFormBtn = document.querySelector('.submit-btn');
+const cancelFormBtn = document.querySelector('.cancel-btn');
 const titleInput = document.querySelector('#title');
 const authorInput = document.querySelector('#author');
 const pagesInput = document.querySelector("#pages");
@@ -101,6 +102,10 @@ newBookBtn.addEventListener('click', () => {
 })
 
 submitFormBtn.addEventListener('click', () =>{
+    if(isInvalid()){
+       // indicateRequired(bookForm);
+        return;
+    }
     bookForm.classList.add('no-display');
     addBookToLibrary(title.value, author.value, pages.value, Boolean(selectRead.selectedIndex));
     removeChildren(bookLog);
@@ -109,15 +114,25 @@ submitFormBtn.addEventListener('click', () =>{
 
 });
 
-function isInvalid(form){
+cancelFormBtn.addEventListener('click', () =>{
+    bookForm.classList.add('no-display');
+    resetForm();
+})
+
+function isInvalid(){
     if(!(title.value && author.value && pages.value)){
-        return true;
+       return true;
     }
-};
-function indicateRequired(element){
-    console.log(element);
-    element.classList.add('invalid');
 }
+/*
+function indicateRequired(parent){
+    let children = parent.childNodes;
+    for(let child of children){
+        if(child.nodeName === "INPUT" && !(child.value)){
+            child.classList.add('invalid');
+        }
+    }
+}*/
 
 function removeChildren(container){
     while(container.hasChildNodes()){
